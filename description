@@ -3,3 +3,14 @@
 # poetry env info -p
 # poetry config virtualenvs.in-project true
 # poetry install
+
+
+# Step 2.
+- poetry add django
+- django-admin startproject myapp
+- python manage.py runserver
+- python manage.py startapp app
+
+- в директории с pyproject выполняем poetry add psycopg2 для работы с postgresql
+
+- во внешнем myapp выполняем python manage.py migrate
