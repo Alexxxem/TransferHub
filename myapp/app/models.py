@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 import uuid
+from django.core.validators import MaxValueValidator
 
 
 class Country(models.Model):
@@ -40,7 +41,7 @@ class Player(models.Model):
     position = models.CharField(max_length=255)
     height = models.DecimalField(max_digits=5, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)
-    jersey_number = models.IntegerField(max_length=99)
+    jersey_number = models.IntegerField(validators=[MaxValueValidator(99)])
 
     def __str__(self):
         return self.fio
