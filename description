@@ -1,0 +1,5 @@
+# poetry init
+# poetry shell
+# poetry env info -p
+# poetry config virtualenvs.in-project true
+# poetry install
