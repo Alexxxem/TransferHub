@@ -1,83 +1,37 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Название вашего приложения</title>
-    <!-- Подключение ваших стилей CSS и других мета-тегов здесь -->
-    <style>
-        /* Добавьте свои стили CSS здесь */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar-logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-        }
-        .navbar-links {
-            display: flex;
-            gap: 20px;
-        }
-        .navbar-links a {
-            color: #fff;
-            text-decoration: none;
-        }
-        main {
-            padding: 20px;
-        }
-    </style>
+    <title>Management Hub</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
 
-    <header>
-        <div class="navbar">
-            <div>
-                <a href="#" class="navbar-logo">Логотип</a>
-            </div>
-            <div class="navbar-links">
-                <a href="#">Регистрация</a>
-                <a href="#">Вход</a>
-            </div>
+    <header class="navBar">
+        <div class="navBar_logoBox">
+            <img src="{%static images/logo.svg}" width="50" height="50" alt="Logo">
+            <span class="logoText">Management hub</span>
         </div>
-        <h1>Название вашего приложения</h1>
-    </header>
-
-    <main>
-        <section>
-            <h2>О нас</h2>
-            <p>Некоторая информация о вашем приложении.</p>
-        </section>
-
-        <section>
-            <h2>Основные возможности</h2>
-            <ul>
-                <li>Возможность 1</li>
-                <li>Возможность 2</li>
-                <li>Возможность 3</li>
+        <nav class="navigation ">
+            <ul class="menu">
+                <li class="menuItem"><a class="menuLink" href="/features/">Features</a></li>
+                <li class="menuItem"><a class="menuLink" href="/about_us/">About us</a></li>
+                <li class="menuItem"><a class="menuLink" href="https://github.com/Alexxxem/TransferHub/tree/main/" target="_blank">
+                    <img src="{%static images/github-logo.svg}" alt="GitHub" width="50" height="50">
+                    Github</a></li>
             </ul>
-        </section>
 
-        <!-- Другие секции и информация о приложении -->
-
-    </main>
-
-    <!-- Подключение ваших скриптов JS перед закрытием тега </body> -->
+            <div class="actions">
+                <a class="login-btn" href="">Log in</a>
+                <a class="signup-btn" href="">Sign up</a>
+            </div>
+        </nav>
+    </header>
 
 </body>
 </html>
+

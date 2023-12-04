@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: block;
+}
+
+body {
+    background-color: #fff;
+    color: #000000;
+    font-family: Manrope,sans-serif;
+    font-weight: 400;
+}
+
+
+.navBar {
+    align-items: center;
+    display: flex;
+    height: 88px;
+    justify-content: space-between;
+    padding: 0 2.5em;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: rgb(191, 220, 191);
+}
+
+.navBar_logoBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoText {
+    height: 1px;
+    font-weight: 700;
+}
+
+
+.navigation {
+    display: contents;
+}
+
+.menu {
+    align-items: center;
+    display: flex;
+    gap: 2.5em;
+    justify-content: center;
+    list-style: none;
+}
+
+.menuLink {
+    align-items: center;
+    color: var(--primary-color);
+    display: flex;
+    gap: 0.5em;
+    text-decoration: none;
+    transition: color .3s ease;
+}
+
+.actions {
+    align-items: center;
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+}
+
+li a{
+    color: black;
+    text-decoration: none;
+    position: center;
+}
+
+
+.login-btn {
+    background-color: #c177fc;
+    color: black;
+    font-weight: 600;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 15px;
+    border: black;
+}
+
+.signup-btn {
+    background-color: #c177fc;
+    color: white;
+    font-weight: 600;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 15px;
+    border: black;
+}
+
+.login-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: black;
+}
