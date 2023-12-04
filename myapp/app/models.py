@@ -5,7 +5,7 @@ from django.core.validators import MaxValueValidator
 
 
 class Country(models.Model):
-    country_id = models.AutoField(primary_key=True)
+    country_id = models.IntegerField(primary_key=True, unique=True)
     name = models.CharField(max_length=255)
 
     def __str__(self):
