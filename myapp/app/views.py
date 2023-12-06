@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm
 
+from .forms import CreateUserForm
+
 
 class IndexView(View):
     template_name = "app/index.html"
@@ -14,15 +16,15 @@ class RegisterPage(View):
     template_name = 'app/register.html'
 
     def get(self, request):
-        form = UserCreationForm()
+        form = CreateUserForm()
         context = {'form': form}
         return render(request, self.template_name, context)
 
     def post(self, request):
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('app')  # Замените 'home' на имя вашей домашней страницы
+            return redirect('app:register')
         context = {'form': form}
         return render(request, self.template_name, context)
 
