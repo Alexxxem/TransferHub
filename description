@@ -14,3 +14,8 @@
 - в директории с pyproject выполняем poetry add psycopg2 для работы с postgresql
 
 - во внешнем myapp выполняем python manage.py migrate
+- python manage.py makemigrations
+
+#При заходе с 0. cd .\TransferHub\ -> poetry shell
+# cd .\myapp\
+# python manage.py runserver
