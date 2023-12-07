@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile - Management Hub{% endblock %}
+
+{% block header %}
+    <header class="navBar">
+        <div class="navBar_logoBox">
+            <img src="{% static 'images/logo.svg' %}" width="50" height="50" alt="Logo">
+            <span class="logoText">Management hub</span>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <div class="profile-content">
+        <!-- Ваш контент для страницы профиля -->
+    </div>
+{% endblock %}
