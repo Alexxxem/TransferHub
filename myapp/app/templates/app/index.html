@@ -1,16 +1,8 @@
+{% extends 'app/base.html' %}
 {% load static %}
+{% block title %}Management Hub{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management Hub</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-
+{% block header %}
     <header class="navBar">
         <div class="navBar_logoBox">
             <img src="{% static 'images/logo.svg' %}" width="50" height="50" alt="Logo">
@@ -31,7 +23,8 @@
             </div>
         </nav>
     </header>
+{% endblock %}
 
-</body>
-</html>
-
+{% block content %}
+    <!-- Ваш контент для главной страницы -->
+{% endblock %}
