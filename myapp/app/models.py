@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 import uuid
 from django.core.validators import MaxValueValidator
 
@@ -53,7 +52,7 @@ class Transfer(models.Model):
     from_club = models.ForeignKey(Club, related_name='from_club', on_delete=models.CASCADE)
     to_club = models.ForeignKey(Club, related_name='to_club', on_delete=models.CASCADE)
     transfer_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    transfer_date = models.DateTimeField(default=timezone.now)
+    transfer_date = models.DateTimeField()
     additional_conditions = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -70,7 +69,7 @@ class Contract(models.Model):
         ('rental', 'Аренда'),
     ]
     contract_type = models.CharField(max_length=10, choices=CONTRACT_TYPES)
-    start_date = models.DateField(default=timezone.now)
+    start_date = models.DateField()
     end_date = models.DateField()
     salary = models.DecimalField(max_digits=10, decimal_places=2)
     additional_conditions = models.TextField(blank=True, null=True)
