@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from .models import Player, Contract, Transfer
 
 from .forms import CreateUserForm
 
@@ -17,7 +18,12 @@ class ProfileView(View):
     template_name = "app/profile.html"
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        players = Player.objects.all()  # Получаем все объекты из базы данных
+        contracts = Contract.objects.all()
+        transfers = Transfer.objects.all()
+
+        context = {'players': players, 'contracts': contracts, }
+        return render(request, self.template_name, context)
 
 
 class RegisterPage(View):

@@ -1,0 +1,67 @@
+/* Общие стили для таблицы */
+h2 {
+    background-color: #fff;
+    color: #000000;
+    font-family: Manrope, sans-serif;
+    font-weight: 400;
+}
+
+.profile-content {
+    display: flex;
+}
+
+.left-sidebar {
+    width: 200px; /* Ширина левой боковой панели */
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.left-sidebar h3 {
+    color: #333;
+}
+
+.left-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.right-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Стили для таблицы */
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+}
+
+/* Стили для заголовков таблицы */
+.profile-table thead th {
+    background-color: #6f6b73;
+    color: #fff;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid black;
+}
+
+/* Стили для ячеек таблицы */
+.profile-table td {
+    padding: 8px;
+    border: 1px solid black;
+}
+
+/* Стили для четных строк таблицы */
+.profile-table tbody tr:nth-child(even) {
+    background-color: #eee;
+}
+
+/* Стили для столбцов (кроме первого) */
+.profile-table tbody td:not(:first-child) {
+    width: 150px; /* Задайте желаемую ширину для столбцов, кроме первого */
+}

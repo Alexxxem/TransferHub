@@ -12,7 +12,95 @@
 {% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <script>
+        // Функция для изменения отображаемой таблицы при выборе из левого столбца
+        function showTable(tableName) {
+            // Скрыть все таблицы
+            var tables = document.querySelectorAll('.profile-table');
+            tables.forEach(function(table) {
+                table.style.display = 'none';
+            });
+
+            // Отобразить выбранную таблицу
+            var selectedTable = document.getElementById(tableName);
+            selectedTable.style.display = 'table';
+        }
+    </script>
+
     <div class="profile-content">
-        <!-- Ваш контент для страницы профиля -->
+        <div class="left-sidebar">
+            <h3>Table List</h3>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showTable('player-table')">Player Information</a></li>
+                <li><a href="javascript:void(0);" onclick="showTable('contracts-table')">Contracts</a></li>
+                <li><a href="javascript:void(0);" onclick="showTable('transfers-table')">Transfers</a></li>
+                <!-- Добавьте другие таблицы по мере необходимости -->
+            </ul>
+        </div>
+        <div class="right-content">
+            <!-- Players table -->
+            <table id="player-table" class="profile-table">
+                <thead>
+                    <tr>
+                        <th>FIO</th>
+                        <th>Position</th>
+                        <th>Club</th>
+                        <th>Birth date</th>
+                        <th>Birth place</th>
+                        <th>Nationality</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>Jersey number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                        <tr>
+                            <td>{{ player.fio }}</td>
+                            <td>{{ player.position }}</td>
+                            <td>{{ player.club }}</td>
+                            <td>{{ player.birth_date }}</td>
+                            <td>{{ player.birth_place }}</td>
+                            <td>{{ player.nationality }}</td>
+                            <td>{{ player.height }}</td>
+                            <td>{{ player.weight }}</td>
+                            <td>{{ player.jersey_number }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table id="contracts-table" class="profile-table" style="display: none;">
+                <!-- Contracts table -->
+                <thead>
+                    <tr>
+                        <th>Contract id</th>
+                        <th>Transfer</th>
+                        <th>FIO</th>
+                        <th>Club</th>
+                        <th>Validity</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contract in contracts %}
+                        <tr>
+                            <td>{{ contract.contract_id }}</td>
+                            <td>{{ contract.transfer.transfer_id}}</td>
+                            <td>{{ contract.transfer.player}}</td>
+                            <td>{{ contract.club}}</td>
+                            <td>{{ contract.start_date }} - {{ contract.end_date }}</td>
+                            <td>{{ contract.salary }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table id="transfers-table" class="profile-table" style="display: none;">
+                <!--Transfers table -->
+            </table>
+            <!-- Добавьте другие таблицы по мере необходимости -->
+        </div>
     </div>
 {% endblock %}

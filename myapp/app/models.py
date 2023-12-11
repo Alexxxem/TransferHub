@@ -49,19 +49,22 @@ class Player(models.Model):
 class Transfer(models.Model):
     transfer_id = models.UUIDField(default=uuid.uuid4, editable=False)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
-    from_club = models.ForeignKey(Club, related_name='from_club', on_delete=models.CASCADE)
+    from_club = models.ForeignKey(Club, related_name='from_club', on_delete=models.CASCADE, blank=True, null=True)
     to_club = models.ForeignKey(Club, related_name='to_club', on_delete=models.CASCADE)
     transfer_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    transfer_date = models.DateTimeField()
+    transfer_date = models.DateField()
     additional_conditions = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"Transfer {self.transfer_id} - {self.player.fio} ({self.from_club.name} to {self.to_club.name})"
+        if self.from_club:
+            return f"Transfer {self.transfer_id} - {self.player.fio} ({self.from_club.name} to {self.to_club.name})"
+        else:
+            return f"Transfer {self.transfer_id} - {self.player.fio} ( to {self.to_club.name})"
 
 
 class Contract(models.Model):
     contract_id = models.CharField(max_length=8, unique=True, default=uuid.uuid4().hex[:8])
-    transfer = models.ForeignKey(Transfer, on_delete=models.CASCADE)
+    transfer = models.ForeignKey(Transfer, on_delete=models.CASCADE, blank=True, null=True)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
 
     CONTRACT_TYPES = [
