@@ -65,3 +65,28 @@ h2 {
 .profile-table tbody td:not(:first-child) {
     width: 150px; /* Задайте желаемую ширину для столбцов, кроме первого */
 }
+
+.navBar_userInfo {
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn {
+    background-color: #c177fc;
+    color: black;
+    font-weight: 600;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 10px;
+    border: black;
+}
+
+.navBar_userInfo > *:not(:last-child) {
+    margin-right: 15px; /* Измените значение на ваше усмотрение */
+}
+
+.hello_user {
+    color: #000000;
+    font-family: Manrope, sans-serif;
+    font-weight: 600;
+}

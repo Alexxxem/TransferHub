@@ -8,6 +8,12 @@
             <img src="{% static 'images/logo.svg' %}" width="50" height="50" alt="Logo">
             <span class="logoText">Management hub</span>
         </div>
+
+        <div class="navBar_userInfo">
+            <span class="hello_user">  Hello, {{ request.user }} </span>
+            <a class="logout-btn" href="{% url 'app:logout' %}">Log out</a>
+        </div>
+
     </header>
 {% endblock %}
 
@@ -99,6 +105,34 @@
 
             <table id="transfers-table" class="profile-table" style="display: none;">
                 <!--Transfers table -->
+                <thead>
+                    <tr>
+                        <th>Transfer id</th>
+                        <th>FIO</th>
+                        <th>Clubs</th>
+                        <th>Transfer Amount</th>
+                        <th>Transfer Date</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transfer in transfers %}
+                        <tr>
+                            <td>{{ transfer.transfer_id }}</td>
+                            <td>{{ transfer.player.fio }}</td>
+                            <td>
+                                {% if transfer.from_club %}
+                                    {{ transfer.from_club }} → {{ transfer.to_club }}
+                                {% else %}
+                                    Free agent → {{ transfer.to_club }}
+                                {% endif %}
+                            </td>
+                            <td>{{ transfer.transfer_amount }} €</td>
+                            <td>{{ transfer.transfer_date }}</td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
             <!-- Добавьте другие таблицы по мере необходимости -->
         </div>

@@ -59,7 +59,7 @@ class Transfer(models.Model):
         if self.from_club:
             return f"Transfer {self.transfer_id} - {self.player.fio} ({self.from_club.name} to {self.to_club.name})"
         else:
-            return f"Transfer {self.transfer_id} - {self.player.fio} ( to {self.to_club.name})"
+            return f"Transfer {self.transfer_id} - {self.player.fio} (Free agent to {self.to_club.name})"
 
 
 class Contract(models.Model):

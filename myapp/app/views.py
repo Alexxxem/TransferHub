@@ -22,7 +22,12 @@ class ProfileView(View):
         contracts = Contract.objects.all()
         transfers = Transfer.objects.all()
 
-        context = {'players': players, 'contracts': contracts, }
+        context = {
+            'players': players,
+            'contracts': contracts,
+            'transfers': transfers,
+            }
+
         return render(request, self.template_name, context)
 
 
@@ -59,7 +64,7 @@ class LoginPage(View):
 
         if user is not None:
             login(request, user)
-            return redirect('app:index')
+            return redirect('app:profile')
         else:
             messages.info(request, 'Username OR password is incorrect')
 
