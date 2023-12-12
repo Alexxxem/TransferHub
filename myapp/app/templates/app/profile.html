@@ -135,6 +135,16 @@
                 </tbody>
             </table>
             <!-- Добавьте другие таблицы по мере необходимости -->
+
+            <!-- Добавление форм для добавления данных -->
+            {% if player_form %}
+                <form method="post" action="{% url 'app:profile' %}">
+                    {% csrf_token %}
+                    {{ player_form.as_p }}
+                    <button type="submit" name="player-form">Add player</button>
+                </form>
+            {% endif %}
+
         </div>
     </div>
 {% endblock %}
