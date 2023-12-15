@@ -14,3 +14,15 @@ class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
         fields = '__all__'
+
+
+class TransferForm(forms.ModelForm):
+    class Meta:
+        model = Transfer
+        fields = '__all__'
+
+
+class ContractForm(forms.ModelForm):
+    class Meta:
+        model = Contract
+        fields = '__all__'

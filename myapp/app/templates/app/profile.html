@@ -19,28 +19,17 @@
 
 {% block content %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
-    <script>
-        // Функция для изменения отображаемой таблицы при выборе из левого столбца
-        function showTable(tableName) {
-            // Скрыть все таблицы
-            var tables = document.querySelectorAll('.profile-table');
-            tables.forEach(function(table) {
-                table.style.display = 'none';
-            });
-
-            // Отобразить выбранную таблицу
-            var selectedTable = document.getElementById(tableName);
-            selectedTable.style.display = 'table';
-        }
-    </script>
+    <script src="{% static 'js/scripts.js' %}"></script>
 
     <div class="profile-content">
         <div class="left-sidebar">
             <h3>Table List</h3>
             <ul>
-                <li><a href="javascript:void(0);" onclick="showTable('player-table')">Player Information</a></li>
-                <li><a href="javascript:void(0);" onclick="showTable('contracts-table')">Contracts</a></li>
-                <li><a href="javascript:void(0);" onclick="showTable('transfers-table')">Transfers</a></li>
+                <li><a href="javascript:void(0);" onclick="showTable('player-table', 'player-form')">Player Information</a></li>
+                <li><a href="javascript:void(0);" onclick="showTable('contracts-table', 'contracts-form')">Contracts</a></li>
+                <li><a href="javascript:void(0);" onclick="showTable('transfers-table', 'transfers-form')">Transfers</a></li>
+
+
                 <!-- Добавьте другие таблицы по мере необходимости -->
             </ul>
         </div>
@@ -136,14 +125,41 @@
             </table>
             <!-- Добавьте другие таблицы по мере необходимости -->
 
-            <!-- Добавление форм для добавления данных -->
-            {% if player_form %}
-                <form method="post" action="{% url 'app:profile' %}">
-                    {% csrf_token %}
-                    {{ player_form.as_p }}
-                    <button type="submit" name="player-form">Add player</button>
-                </form>
-            {% endif %}
+
+            <!-- Кнопка для открытия всплывающего окна с формой -->
+            <button id="add-button" onclick="openModal()">Add</button>
+
+            <!-- Всплывающее окно (модальное окно) -->
+            <div id="modal" class="modal" onclick="closeModal()">
+                <div class="modal-content" onclick="event.stopPropagation();">
+                    <!-- Контент вашего всплывающего окна -->
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    {% if player_form %}
+                        <form id="player-form" method="post" action="{% url 'app:profile' %}" style="display: none;">
+                            {% csrf_token %}
+                            {{ player_form.as_p }}
+                            <button type="submit" name="player-form">Add player</button>
+                        </form>
+                    {% endif %}
+
+                    {% if contract_form %}
+                        <form id="contracts-form" method="post" action="{% url 'app:profile' %}" style="display: none;">
+                            {% csrf_token %}
+                            {{ contract_form.as_p }}
+                            <button type="submit" name="contract-form">Add contract</button>
+                        </form>
+                    {% endif %}
+
+                    {% if transfer_form %}
+                        <form id="transfers-form" method="post" action="{% url 'app:profile' %}" style="display: none;">
+                            {% csrf_token %}
+                            {{ transfer_form.as_p }}
+                            <button type="submit" name="transfer-form">Add transfer</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
 
         </div>
     </div>

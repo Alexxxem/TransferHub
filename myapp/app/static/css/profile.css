@@ -90,3 +90,81 @@ h2 {
     font-family: Manrope, sans-serif;
     font-weight: 600;
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
+/* Стили для кнопки "Add" */
+button#add-button {
+    background-color: #c177fc;
+    color: black;
+    font-weight: 600;
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 15px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+button#add-button:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Стили для всплывающего окна */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    display: none;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+}
+
+/* Стили для крестика закрытия окна */
+span.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+span.close:hover {
+    color: #c177fc;
+}
+
+/* Стили для формы внутри всплывающего окна (если нужны) */
+.modal-content form {
+    /* Добавьте стили по вашему усмотрению */
+}
+

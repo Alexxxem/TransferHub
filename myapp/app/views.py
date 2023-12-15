@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Player, Contract, Transfer
-from .forms import CreateUserForm, PlayerForm
+from .forms import CreateUserForm, PlayerForm, TransferForm, ContractForm
 
 
 class IndexView(View):
@@ -25,12 +25,16 @@ class ProfileView(View):
         transfers = Transfer.objects.all()
 
         player_form = PlayerForm()
+        transfer_form = TransferForm()
+        contract_form = ContractForm()
 
         context = {
             'players': players,
             'contracts': contracts,
             'transfers': transfers,
             'player_form': player_form,
+            'transfer_form': transfer_form,
+            'contract_form': contract_form,
         }
 
         return render(request, self.template_name, context)
@@ -40,6 +44,16 @@ class ProfileView(View):
             player_form = PlayerForm(request.POST)
             if player_form.is_valid():
                 player_form.save()
+
+        if 'transfer-form' in request.POST:
+            transfer_form = TransferForm(request.POST)
+            if transfer_form.is_valid():
+                transfer_form.save()
+
+        if 'contract-form' in request.POST:
+            contract_form = ContractForm(request.POST)
+            if contract_form.is_valid():
+                contract_form.save()
 
         return redirect('app:profile')
 
