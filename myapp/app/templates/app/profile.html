@@ -28,14 +28,15 @@
                 <li><a href="javascript:void(0);" onclick="showTable('player-table', 'player-form')">Player Information</a></li>
                 <li><a href="javascript:void(0);" onclick="showTable('contracts-table', 'contracts-form')">Contracts</a></li>
                 <li><a href="javascript:void(0);" onclick="showTable('transfers-table', 'transfers-form')">Transfers</a></li>
+
+
+                <!-- Добавьте другие таблицы по мере необходимости -->
             </ul>
         </div>
 
         <div class="right-content">
-
             <!-- Кнопка для открытия всплывающего окна с формой -->
             <button id="add-button" onclick="openModal()">Add</button>
-
             <!-- Players table -->
             <table id="player-table" class="profile-table">
                 <thead>
@@ -63,7 +64,6 @@
                             <td>{{ player.height }}</td>
                             <td>{{ player.weight }}</td>
                             <td>{{ player.jersey_number }}</td>
-
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -126,6 +126,10 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <!-- Добавьте другие таблицы по мере необходимости -->
+
+
+
 
             <!-- Всплывающее окно (модальное окно) -->
             <div id="modal" class="modal" onclick="closeModal()">
@@ -157,6 +161,7 @@
                     {% endif %}
                 </div>
             </div>
+
 
         </div>
     </div>

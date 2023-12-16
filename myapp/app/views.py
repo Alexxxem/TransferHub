@@ -20,7 +20,15 @@ class ProfileView(View):
 
     @method_decorator(login_required(login_url='app:login'))
     def get(self, request, *args, **kwargs):
-        players = Player.objects.all()  # Получаем все объекты из базы данных
+        context = self.get_context_data()
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        self.handle_post_request(request)
+        return redirect('app:profile')
+
+    def get_context_data(self):
+        players = Player.objects.all()
         contracts = Contract.objects.all()
         transfers = Transfer.objects.all()
 
@@ -37,25 +45,32 @@ class ProfileView(View):
             'contract_form': contract_form,
         }
 
-        return render(request, self.template_name, context)
+        return context
 
-    def post(self, request, *args, **kwargs):
+    def handle_post_request(self, request):
         if 'player-form' in request.POST:
-            player_form = PlayerForm(request.POST)
-            if player_form.is_valid():
-                player_form.save()
+            self.handle_player_form(request.POST)
 
         if 'transfer-form' in request.POST:
-            transfer_form = TransferForm(request.POST)
-            if transfer_form.is_valid():
-                transfer_form.save()
+            self.handle_transfer_form(request.POST)
 
         if 'contract-form' in request.POST:
-            contract_form = ContractForm(request.POST)
-            if contract_form.is_valid():
-                contract_form.save()
+            self.handle_contract_form(request.POST)
 
-        return redirect('app:profile')
+    def handle_player_form(self, post_data):
+        player_form = PlayerForm(post_data)
+        if player_form.is_valid():
+            player_form.save()
+
+    def handle_transfer_form(self, post_data):
+        transfer_form = TransferForm(post_data)
+        if transfer_form.is_valid():
+            transfer_form.save()
+
+    def handle_contract_form(self, post_data):
+        contract_form = ContractForm(post_data)
+        if contract_form.is_valid():
+            contract_form.save()
 
 
 class RegisterPage(View):
