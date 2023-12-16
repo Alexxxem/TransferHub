@@ -121,6 +121,7 @@ button#add-button {
     border-radius: 15px;
     border: 2px solid black;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 button#add-button:hover {
