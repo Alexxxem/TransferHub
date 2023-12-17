@@ -64,6 +64,10 @@
                             <td>{{ player.height }}</td>
                             <td>{{ player.weight }}</td>
                             <td>{{ player.jersey_number }}</td>
+                            <td>
+                                <a class="btn btn-update" href="{% url 'app:update_player' player.player_id %}">Update</a>
+                            </td>
+
                         </tr>
                     {% endfor %}
                 </tbody>

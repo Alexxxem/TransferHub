@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -71,6 +71,22 @@ class ProfileView(View):
         contract_form = ContractForm(post_data)
         if contract_form.is_valid():
             contract_form.save()
+
+
+def update_player(request, pk):
+    player = get_object_or_404(Player, pk=pk)
+    if request.method == 'POST':
+        form = PlayerForm(request.POST, instance=player)
+        if form.is_valid():
+            form.save()
+            return redirect('app:profile')
+    else:
+        form = PlayerForm(instance=player)
+
+    context = {
+        "form": form,
+    }
+    return render(request, 'app/update_form.html', context)
 
 
 class RegisterPage(View):

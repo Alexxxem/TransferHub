@@ -1,0 +1,21 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile - Management Hub{% endblock %}
+
+{% block header %}
+    <header class="navBar">
+        <div class="navBar_logoBox">
+            <img src="{% static 'images/logo.svg' %}" width="50" height="50" alt="Logo">
+            <span class="logoText">Management hub</span>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="Submit">
+</form>
+
+{% endblock %}
