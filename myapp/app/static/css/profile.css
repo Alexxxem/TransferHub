@@ -169,3 +169,22 @@ span.close:hover {
     /* Добавьте стили по вашему усмотрению */
 }
 
+.btn-update {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #c177fc;
+    color: #c177fc;
+    background-color: #ffffff;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-update:hover {
+    background-color: #c177fc;
+    color: #ffffff;
+}
