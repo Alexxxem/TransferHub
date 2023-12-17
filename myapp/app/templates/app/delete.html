@@ -12,14 +12,13 @@
 {% endblock %}
 
 {% block content %}
-  <h2>Confirm Deletion</h2>
-  <p>Are you sure you want to delete player "{{ player.fio }}"?</p>
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete {{ model_type }} "{{ object }} "?</p>
 
-  <form method="post" action="{% url 'app:delete_player' player.player_id %}">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-  </form>
+    <form method="post" action="{% url 'app:delete_object' model=model_type pk=object.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
 
-  <a href="{% url 'app:profile' %}">Cancel</a>
-
+    <a href="{% url 'app:profile' %}">Cancel</a>
 {% endblock %}

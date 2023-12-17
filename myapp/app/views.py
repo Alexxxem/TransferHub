@@ -106,6 +106,23 @@ def update_contract(request, pk):
     return render(request, 'app/update_form.html', context)
 
 
+def update_transfer(request, pk):
+    transfer = get_object_or_404(Transfer, transfer_id=pk)
+
+    if request.method == 'POST':
+        form = TransferForm(request.POST, instance=transfer)
+        if form.is_valid():
+            form.save()
+            return redirect('app:profile')
+    else:
+        form = ContractForm(instance=transfer)
+
+    context = {
+        "form": form,
+    }
+    return render(request, 'app/update_form.html', context)
+
+
 def delete_player(request, pk):
     player = get_object_or_404(Player, pk=pk)
 
@@ -128,6 +145,19 @@ def delete_contract(request, pk):
 
     context = {
         'contract': contract,
+    }
+    return render(request, 'app/delete.html', context)
+
+
+def delete_transfer(request, pk):
+    transfer = get_object_or_404(Transfer, pk=pk)
+
+    if request.method == 'POST':
+        transfer.delete()
+        return redirect('app:profile')
+
+    context = {
+        'contract': transfer,
     }
     return render(request, 'app/delete.html', context)
 
@@ -175,3 +205,23 @@ class LoginPage(View):
 def logout_user(request):
     logout(request)
     return redirect('app:login')
+
+
+def delete_object(request, model, pk):
+    model_class = {
+        'player': Player,
+        'contract': Contract,
+        'transfer': Transfer,
+    }.get(model)
+
+    obj = get_object_or_404(model_class, pk=pk)
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('app:profile')
+
+    context = {
+        'object': obj,
+        'model_type': model,
+    }
+    return render(request, 'app/delete.html', context)

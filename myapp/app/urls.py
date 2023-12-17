@@ -12,7 +12,10 @@ urlpatterns = [
     path("logout/", views.logout_user, name='logout'),
     path("profile/update_player/<str:pk>/", views.update_player, name='update_player'),
     path("profile/update_contract/<str:pk>/", views.update_contract, name='update_contract'),
+    path("profile/update_transfer/<str:pk>/", views.update_transfer, name='update_transfer'),
     path('profile/delete/<str:pk>/', views.delete_player, name='delete_player'),
     path('profile/delete/<str:pk>/', views.delete_contract, name='delete_contract'),
+    path('profile/delete/<str:pk>/', views.delete_transfer, name='delete_transfer'),
+    path('profile/delete/<str:model>/<str:pk>/', views.delete_object, name='delete_object'),
 
 ]

@@ -68,7 +68,7 @@
                             <td>
                                 <div class="btn-container">
                                     <a class="btn-common btn-update" href="{% url 'app:update_player' player.player_id %}">Update</a>
-                                    <a class="btn-common btn-delete" href="{% url 'app:delete_player' player.player_id %}">Delete</a>
+                                    <a class="btn-common btn-delete" href="{% url 'app:delete_object' model='player' pk=player.player_id %}">Delete</a>
                                 </div>
                             </td>
 
@@ -102,7 +102,7 @@
                             <td>
                                 <div class="btn-container">
                                     <a class="btn-common btn-update" href="{% url 'app:update_contract' contract.contract_id %}">Update</a>
-                                    <a class="btn-common btn-delete" href="{% url 'app:delete_contract' contract.contract_id %}">Delete</a>
+                                    <a class="btn-common btn-delete" href="{% url 'app:delete_object' model='contract' pk=contract.id %}">Delete</a>
                                 </div>
                             </td>
                         </tr>
@@ -119,6 +119,7 @@
                         <th>Clubs</th>
                         <th>Transfer Amount</th>
                         <th>Transfer Date</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
@@ -136,6 +137,12 @@
                             </td>
                             <td>{{ transfer.transfer_amount }} €</td>
                             <td>{{ transfer.transfer_date }}</td>
+                            <td>
+                                <div class="btn-container">
+                                    <a class="btn-common btn-update" href="{% url 'app:update_transfer' transfer.transfer_id %}">Update</a>
+                                    <a class="btn-common btn-delete" href="{% url 'app:delete_object' model='transfer' pk=transfer.id %}">Delete</a>
+                                </div>
+                            </td>
 
                         </tr>
                     {% endfor %}
