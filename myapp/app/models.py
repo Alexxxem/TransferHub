@@ -40,7 +40,7 @@ class Player(models.Model):
     position = models.CharField(max_length=255)
     height = models.DecimalField(max_digits=5, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)
-    jersey_number = models.IntegerField(validators=[MaxValueValidator(99)])
+    jersey_number = models.IntegerField(validators=[MaxValueValidator(99)], unique=True)
 
     def __str__(self):
         return self.fio
