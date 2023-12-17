@@ -2,12 +2,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // При загрузке страницы скрываем все таблицы, кроме "player-table"
     var tables = document.querySelectorAll('.profile-table');
     tables.forEach(function (table) {
+        // Уничтожить DataTable перед скрытием
+        var dataTable = $(table).DataTable();
+        if (dataTable !== undefined) {
+            dataTable.destroy();
+        }
+
         table.style.display = 'none';
     });
 
-    // Отображаем "player-table"
-    var playerTable = document.getElementById('player-table');
-    playerTable.style.display = 'table';
+    // Отображаем "player-table" и инициализируем DataTable
+    showTable('player-table', 'player-form');
 
     // Отображаем кнопку "Add" и привязываем ее к форме "player-form"
     var addButton = document.getElementById('add-button');
@@ -21,12 +26,21 @@ function showTable(tableName, formId) {
     // Скрыть все таблицы
     var tables = document.querySelectorAll('.profile-table');
     tables.forEach(function (table) {
+        // Уничтожить DataTable перед скрытием
+        var dataTable = $(table).DataTable();
+        if (dataTable !== undefined) {
+            dataTable.destroy();
+        }
+
         table.style.display = 'none';
     });
 
     // Отобразить выбранную таблицу
     var selectedTable = document.getElementById(tableName);
     selectedTable.style.display = 'table';
+
+    // Инициализировать DataTable для выбранной таблицы
+    $('#' + tableName).DataTable();
 
     // Отобразить кнопку "Add" и привязать ее к соответствующей форме
     var addButton = document.getElementById('add-button');

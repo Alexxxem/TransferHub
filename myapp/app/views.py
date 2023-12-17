@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Player, Contract, Transfer
+from .models import Player, Contract, Transfer, Country
 from .forms import CreateUserForm, PlayerForm, TransferForm, ContractForm
 
 
@@ -31,6 +31,7 @@ class ProfileView(View):
         players = Player.objects.all()
         contracts = Contract.objects.all()
         transfers = Transfer.objects.all()
+        countries = Country.objects.all()
 
         player_form = PlayerForm()
         transfer_form = TransferForm()
@@ -40,6 +41,7 @@ class ProfileView(View):
             'players': players,
             'contracts': contracts,
             'transfers': transfers,
+            'countries': countries,
             'player_form': player_form,
             'transfer_form': transfer_form,
             'contract_form': contract_form,
