@@ -89,19 +89,45 @@ def update_player(request, pk):
     return render(request, 'app/update_form.html', context)
 
 
+def update_contract(request, pk):
+    contract = get_object_or_404(Contract, contract_id=pk)
+
+    if request.method == 'POST':
+        form = ContractForm(request.POST, instance=contract)
+        if form.is_valid():
+            form.save()
+            return redirect('app:profile')
+    else:
+        form = ContractForm(instance=contract)
+
+    context = {
+        "form": form,
+    }
+    return render(request, 'app/update_form.html', context)
+
+
 def delete_player(request, pk):
-    # Retrieve the player object or return a 404 response if not found
     player = get_object_or_404(Player, pk=pk)
 
     if request.method == 'POST':
-        # If the request method is POST, it means the user has confirmed the deletion
         player.delete()
-        # Redirect to a success page or another appropriate view after deletion
-        return redirect('app:profile')  # Replace 'app:index' with the desired URL
+        return redirect('app:profile')
 
-    # If the request method is GET, render a confirmation page
     context = {
         'player': player,
+    }
+    return render(request, 'app/delete.html', context)
+
+
+def delete_contract(request, pk):
+    contract = get_object_or_404(Contract, pk=pk)
+
+    if request.method == 'POST':
+        contract.delete()
+        return redirect('app:profile')
+
+    context = {
+        'contract': contract,
     }
     return render(request, 'app/delete.html', context)
 
