@@ -115,7 +115,7 @@ def update_transfer(request, pk):
             form.save()
             return redirect('app:profile')
     else:
-        form = ContractForm(instance=transfer)
+        form = TransferForm(instance=transfer)
 
     context = {
         "form": form,
