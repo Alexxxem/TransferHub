@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile - Management Hub{% endblock %}
+
+{% block header %}
+    <header class="navBar">
+        <div class="navBar_logoBox">
+            <img src="{% static 'images/logo.svg' %}" width="50" height="50" alt="Logo">
+            <span class="logoText">Management hub</span>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+  <h2>Confirm Deletion</h2>
+  <p>Are you sure you want to delete player "{{ player.fio }}"?</p>
+
+  <form method="post" action="{% url 'app:delete_player' player.player_id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+
+  <a href="{% url 'app:profile' %}">Cancel</a>
+
+{% endblock %}

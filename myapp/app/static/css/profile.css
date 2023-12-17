@@ -169,7 +169,8 @@ span.close:hover {
     /* Добавьте стили по вашему усмотрению */
 }
 
-.btn-update {
+/* Shared styles for both buttons */
+.btn-common {
     display: inline-block;
     padding: 8px 12px;
     font-size: 14px;
@@ -177,14 +178,41 @@ span.close:hover {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Update button specific styles */
+.btn-update {
     border: 2px solid #c177fc;
     color: #c177fc;
     background-color: #ffffff;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 .btn-update:hover {
     background-color: #c177fc;
     color: #ffffff;
+}
+
+/* Delete button specific styles */
+.btn-delete {
+    border: 2px solid #c177fc;
+    color: #c177fc;
+    background-color: #ffffff;
+}
+
+.btn-delete:hover {
+    background-color: #c177fc;
+    color: #ffffff;
+}
+
+/* Position the buttons next to each other */
+.btn-container {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Center vertically within the container */
+}
+
+/* Adjust spacing between buttons */
+.btn-delete {
+    margin-left: 10px; /* Adjust the margin between buttons */
 }

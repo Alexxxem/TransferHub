@@ -89,6 +89,23 @@ def update_player(request, pk):
     return render(request, 'app/update_form.html', context)
 
 
+def delete_player(request, pk):
+    # Retrieve the player object or return a 404 response if not found
+    player = get_object_or_404(Player, pk=pk)
+
+    if request.method == 'POST':
+        # If the request method is POST, it means the user has confirmed the deletion
+        player.delete()
+        # Redirect to a success page or another appropriate view after deletion
+        return redirect('app:profile')  # Replace 'app:index' with the desired URL
+
+    # If the request method is GET, render a confirmation page
+    context = {
+        'player': player,
+    }
+    return render(request, 'app/delete.html', context)
+
+
 class RegisterPage(View):
     template_name = 'app/register.html'
 
