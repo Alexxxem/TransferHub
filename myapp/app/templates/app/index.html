@@ -10,8 +10,8 @@
         </div>
         <nav class="navigation ">
             <ul class="menu">
-                <li class="menuItem"><a class="menuLink" href="/features/">Features</a></li>
-                <li class="menuItem"><a class="menuLink" href="/about_us/">About us</a></li>
+                <li class="menuItem"><a class="menuLink" href="/#/">Features</a></li>
+                <li class="menuItem"><a class="menuLink" href="/#/">About us</a></li>
                 <li class="menuItem"><a class="menuLink" href="https://github.com/Alexxxem/TransferHub/tree/main/" target="_blank">
                     <img src="{% static 'images/github-logo.svg' %}" alt="GitHub" width="50" height="50">
                     Github</a></li>
@@ -26,5 +26,25 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Ваш контент для главной страницы -->
+
+    <div class="content-container">
+    <!-- Левая половина -->
+        <div class="left-half">
+            <div class="left-half-cnt1">
+                <span class="contentText1">TRANSFER</span>
+            </div>
+            <div class="left-half-cnt2">
+                <span class="contentText2">Management Hub</span>
+            </div>
+        </div>
+
+        <!-- Правая половина -->
+        <div class="right-half">
+            <div class="contentLogo">
+                <img src="{% static 'images/football-ball.svg' %}" width="50" height="50" alt="Logo">
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
