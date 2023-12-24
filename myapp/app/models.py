@@ -37,7 +37,15 @@ class Player(models.Model):
     birth_date = models.DateField()
     birth_place = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
-    position = models.CharField(max_length=255)
+
+    POSITION_TYPES = [
+        ('GOALKEEPER', 'Вратарь'),
+        ('DEFENDER', 'Защитник'),
+        ('MIDFIELDER', 'Полузащитник'),
+        ('FORWARD', 'Нападающий'),
+    ]
+
+    position = models.CharField(max_length=20, choices=POSITION_TYPES)
     height = models.DecimalField(max_digits=5, decimal_places=2)
     weight = models.DecimalField(max_digits=5, decimal_places=2)
     jersey_number = models.IntegerField(validators=[MaxValueValidator(99)], unique=True)
@@ -51,7 +59,7 @@ class Transfer(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     from_club = models.ForeignKey(Club, related_name='from_club', on_delete=models.CASCADE, blank=True, null=True)
     to_club = models.ForeignKey(Club, related_name='to_club', on_delete=models.CASCADE)
-    transfer_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    transfer_amount = models.DecimalField(max_digits=12, decimal_places=2)
     transfer_date = models.DateField()
     additional_conditions = models.TextField(blank=True, null=True)
 
@@ -71,7 +79,7 @@ class Contract(models.Model):
         ('standard', 'Стандартный'),
         ('rental', 'Аренда'),
     ]
-    contract_type = models.CharField(max_length=10, choices=CONTRACT_TYPES)
+    contract_type = models.CharField(max_length=20, choices=CONTRACT_TYPES)
     start_date = models.DateField()
     end_date = models.DateField()
     salary = models.DecimalField(max_digits=10, decimal_places=2)
