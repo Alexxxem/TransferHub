@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+
 from .models import Player, Contract, Transfer, Country
 from .forms import CreateUserForm, PlayerForm, TransferForm, ContractForm
+from .decorators import unauthenticated_user
 
 
 class IndexView(View):
@@ -167,11 +169,13 @@ def delete_transfer(request, pk):
 class RegisterPage(View):
     template_name = 'app/register.html'
 
+    @method_decorator(unauthenticated_user)
     def get(self, request):
         form = CreateUserForm()
         context = {'form': form}
         return render(request, self.template_name, context)
 
+    @method_decorator(unauthenticated_user)
     def post(self, request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
@@ -183,12 +187,15 @@ class RegisterPage(View):
         return render(request, self.template_name, context)
 
 
+# @unauthenticated_user
 class LoginPage(View):
     template_name = "app/login.html"
 
+    @method_decorator(unauthenticated_user)
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
+    @method_decorator(unauthenticated_user)
     def post(self, request, *args, **kwargs):
         username = request.POST.get('username')
         password = request.POST.get('password')
