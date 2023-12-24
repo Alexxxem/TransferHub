@@ -74,6 +74,7 @@ class Contract(models.Model):
     contract_id = models.CharField(max_length=8, unique=True, default=uuid.uuid4().hex[:8])
     transfer = models.ForeignKey(Transfer, on_delete=models.CASCADE, blank=True, null=True)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
 
     CONTRACT_TYPES = [
         ('standard', 'Стандартный'),

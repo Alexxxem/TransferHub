@@ -45,8 +45,6 @@
             <!-- Кнопка для открытия всплывающего окна с формой -->
             <button id="add-button" onclick="openModal()">Add</button>
 
-
-
             <!-- Players table -->
             <table id="player-table" class="profile-table">
                 <thead>
@@ -105,7 +103,13 @@
                         <tr>
                             <td>{{ contract.contract_id }}</td>
                             <td>{{ contract.transfer.transfer_id}}</td>
-                            <td>{{ contract.transfer.player}}</td>
+                            <td>
+                                {% if contract.transfer %}
+                                    {{ contract.transfer.player.fio }}
+                                {% else %}
+                                    {{ contract.player.fio }}
+                                {% endif %}
+                            </td>
                             <td>{{ contract.club}}</td>
                             <td>{{ contract.start_date }} - {{ contract.end_date }}</td>
                             <td>{{ contract.salary }}</td>
