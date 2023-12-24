@@ -4,10 +4,29 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import user_passes_test
 
 from .models import Player, Contract, Transfer, Country
 from .forms import CreateUserForm, PlayerForm, TransferForm, ContractForm
 from .decorators import unauthenticated_user
+
+
+def is_coach(user):
+    return user.groups.filter(name='Coach').exists()
+
+
+def is_manager(user):
+    return user.groups.filter(name='Manager').exists()
+
+
+def is_scout(user):
+    return user.groups.filter(name='Scout').exists()
+
+
+# Decorators for views
+coach_required = user_passes_test(is_coach)
+manager_required = user_passes_test(is_manager)
+scout_required = user_passes_test(is_scout)
 
 
 class IndexView(View):
@@ -61,22 +80,26 @@ class ProfileView(View):
         if 'contract-form' in request.POST:
             self.handle_contract_form(request.POST)
 
+    @coach_required
     def handle_player_form(self, post_data):
         player_form = PlayerForm(post_data)
         if player_form.is_valid():
             player_form.save()
 
+    @manager_required
     def handle_transfer_form(self, post_data):
         transfer_form = TransferForm(post_data)
         if transfer_form.is_valid():
             transfer_form.save()
 
+    @manager_required
     def handle_contract_form(self, post_data):
         contract_form = ContractForm(post_data)
         if contract_form.is_valid():
             contract_form.save()
 
 
+@coach_required
 def update_player(request, pk):
     player = get_object_or_404(Player, pk=pk)
     if request.method == 'POST':
@@ -93,6 +116,7 @@ def update_player(request, pk):
     return render(request, 'app/update_form.html', context)
 
 
+@manager_required
 def update_contract(request, pk):
     contract = get_object_or_404(Contract, contract_id=pk)
 
@@ -110,6 +134,7 @@ def update_contract(request, pk):
     return render(request, 'app/update_form.html', context)
 
 
+@manager_required
 def update_transfer(request, pk):
     transfer = get_object_or_404(Transfer, transfer_id=pk)
 
@@ -127,6 +152,7 @@ def update_transfer(request, pk):
     return render(request, 'app/update_form.html', context)
 
 
+@coach_required
 def delete_player(request, pk):
     player = get_object_or_404(Player, pk=pk)
 
@@ -140,6 +166,7 @@ def delete_player(request, pk):
     return render(request, 'app/delete.html', context)
 
 
+@manager_required
 def delete_contract(request, pk):
     contract = get_object_or_404(Contract, pk=pk)
 
@@ -153,6 +180,7 @@ def delete_contract(request, pk):
     return render(request, 'app/delete.html', context)
 
 
+@manager_required
 def delete_transfer(request, pk):
     transfer = get_object_or_404(Transfer, pk=pk)
 
