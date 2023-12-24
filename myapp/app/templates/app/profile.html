@@ -67,7 +67,7 @@
                     {% for player in players %}
                         <tr>
                             <td>{{ player.fio }}</td>
-                            <td>{{ player.position }}</td>
+                            <td>{{ player.get_position_display }}</td>
                             <td>{{ player.club }}</td>
                             <td>{{ player.birth_date }}</td>
                             <td>{{ player.birth_place }}</td>
