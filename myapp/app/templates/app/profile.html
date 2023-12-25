@@ -103,13 +103,7 @@
                         <tr>
                             <td>{{ contract.contract_id }}</td>
                             <td>{{ contract.transfer.transfer_id}}</td>
-                            <td>
-                                {% if contract.transfer %}
-                                    {{ contract.transfer.player.fio }}
-                                {% else %}
-                                    {{ contract.player.fio }}
-                                {% endif %}
-                            </td>
+                            <td>{{ contract.transfer.player.fio }}</td>
                             <td>{{ contract.club}}</td>
                             <td>{{ contract.start_date }} - {{ contract.end_date }}</td>
                             <td>{{ contract.salary }}</td>
