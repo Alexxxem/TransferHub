@@ -11,8 +11,8 @@ header {
 body {
     background-color: #fff;
     color: #000000;
-    font-family: Manrope,sans-serif;
-    font-weight: 400;
+    font-family: "Dela Gothic One", sans-serif;
+    font-weight: 700;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -113,6 +113,10 @@ li a{
     display: flex;
     width: 100%;
     min-height: 100vh;
+    background-image: url('../images/Football_Field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .left-half,
@@ -126,17 +130,18 @@ li a{
 }
 
 .left-half {
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, 0.5);
 }
+
+.right-half {
+    background-color: rgba(240, 240, 240, 0.5);
+}
+
 
 .left-half-cnt1 {
     margin-bottom: 10px;
 }
 
-
-.right-half {
-    background-color: #f0f0f0;
-}
 
 .contentText1, .contentText2 {
     width: 100%;
@@ -173,3 +178,4 @@ li a{
     height: 200px;
     margin-left: -200px;
 }
+

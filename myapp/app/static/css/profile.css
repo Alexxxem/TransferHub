@@ -6,6 +6,11 @@ h2 {
     font-weight: 400;
 }
 
+ .table-list {
+        color: #007bff;
+        margin-bottom: 20px;
+ }
+
 .profile-content {
     display: flex;
 }
